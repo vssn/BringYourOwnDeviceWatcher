@@ -5,23 +5,33 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BringYourOwnDeviceWatcher.Models;
-using System.Xml.Serialization;
-using System.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BringYourOwnDeviceWatcher.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly NmapRunContext _context;
+
+        public HomeController(NmapRunContext context)
+        {
+            _context = context;
+        }
+
+
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
-        }
+            ViewBag.AmountOfHosts = _context.Hosts.Count();
 
-        [HttpPost]
-        public string Index([FromBody] NmapRun devices)
-        {
-            return devices.Verbose.Level; //View();
+            if (_context.Hosts.Count() > 0)
+            {
+                List<Host> hosts = _context.Hosts.Include(b => b.Hostname).Include(b => b.Address).ToList();
+                ViewBag.Hosts = hosts;
+                return View();
+            }
+            return View();
+
         }
 
         public IActionResult Privacy()

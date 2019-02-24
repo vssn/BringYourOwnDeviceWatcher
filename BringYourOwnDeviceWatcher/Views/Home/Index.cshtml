@@ -20,6 +20,7 @@
 
 </div>
 
+<h3>Es sind @ViewBag.AmountOfHosts Geräte bekannt:</h3>
 
 <table class="table table-info">
     <tr>
@@ -27,9 +28,28 @@
         <th>IP</th>
         <th>MAC</th>
     </tr>
-    <tr>
-        <td>x</td>
-        <td>x</td>
-        <td>x</td>
-    </tr>
+    @foreach (var host in ViewBag.Hosts)
+    {
+        <tr>
+            <td>@host.HostId</td>
+            <td>
+                @if(host.Hostname != null)
+                {
+                    @foreach (var hostname in host.Hostname)
+                    {
+                        @hostname.name <br />
+                    }
+                }
+            </td>
+            <td>
+                @if (host.Address != null)
+                {
+                    @foreach (var address in host.Address)
+                    {
+                        @address.addr <br />
+                    }
+                }
+            </td>
+        </tr>
+    }
 </table>

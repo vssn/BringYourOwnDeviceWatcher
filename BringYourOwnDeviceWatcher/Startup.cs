@@ -14,6 +14,7 @@ using BringYourOwnDeviceWatcher.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using BringYourOwnDeviceWatcher.Models;
 
 namespace BringYourOwnDeviceWatcher
 {
@@ -42,6 +43,10 @@ namespace BringYourOwnDeviceWatcher
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=BringYourOwnDeviceWatcher;Trusted_Connection=True;ConnectRetryCount=0";
+            services.AddDbContext<NmapRunContext>
+                (options => options.UseSqlServer(connection));
 
             services.AddMvc(options =>
             {

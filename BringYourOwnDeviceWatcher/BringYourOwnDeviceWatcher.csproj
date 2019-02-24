@@ -6,13 +6,24 @@
     <AspNetCoreHostingModel>inprocess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20190224083132_InitialCreate.cs" />
+    <Compile Remove="Data\Migrations\20190224083132_InitialCreate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190224095639_NmapRunCreate.cs" />
+    <Compile Remove="Data\Migrations\20190224095639_NmapRunCreate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190224114714_NmapRunContext.cs" />
+    <Compile Remove="Data\Migrations\20190224114714_NmapRunContext.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0-preview2-35157" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0-preview2-35157" PrivateAssets="All" />
-    <PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
-    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
   </ItemGroup>
 
 </Project>
