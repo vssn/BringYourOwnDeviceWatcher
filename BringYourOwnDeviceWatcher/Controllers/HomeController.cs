@@ -28,7 +28,6 @@ namespace BringYourOwnDeviceWatcher.Controllers
             {
                 List<Host> hosts = _context.Hosts.Include(b => b.Hostname).Include(b => b.Address).ToList();
                 ViewBag.Hosts = hosts;
-                return View();
             }
             return View();
 
